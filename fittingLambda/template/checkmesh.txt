@@ -1,0 +1,175 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2312                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _c39a0f64-20231220 OPENFOAM=2312 version=2312
+Arch   : "LSB;label=32;scalar=64"
+Exec   : checkMesh
+Date   : Apr 05 2024
+Time   : 13:42:57
+Host   : lizzi-Latitude-5330
+PID    : 45357
+I/O    : uncollated
+Case   : /home/lizzi/Shunt-Optimisation/HT2024/porousModelPaper/fittingLambda/template
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Check mesh...
+
+Time = 0
+
+Mesh stats 
+    points:           414473
+    faces:            507970
+    internal faces:   466359
+    cells:            82092
+    faces per cell:   11.8687
+    boundary patches: 4
+    point zones:      0
+    face zones:       0
+    cell zones:       1
+
+Overall number of cells of each type:
+    hexahedra:     14564
+    prisms:        0
+    wedges:        0
+    pyramids:      0
+    tet wedges:    0
+    tetrahedra:    0
+    polyhedra:     67528
+    Breakdown of polyhedra by number of faces:
+        faces   number of cells
+            7   1157
+            8   4627
+            9   8575
+           10   8709
+           11   5213
+           12   4592
+           13   5496
+           14   6713
+           15   6758
+           16   5698
+           17   3829
+           18   2203
+           19   1110
+           20   496
+           21   217
+           22   125
+           23   108
+           24   114
+           25   110
+           26   109
+           27   149
+           28   265
+           29   295
+           30   257
+           31   134
+           32   77
+           33   58
+           34   61
+           35   52
+           36   26
+           37   7
+           38   6
+           39   9
+           40   5
+           41   1
+           42   1
+           43   2
+           44   1
+           45   3
+           46   5
+           47   2
+           48   1
+           50   1
+           51   2
+           53   2
+           54   2
+           55   1
+           56   5
+           57   3
+           58   5
+           59   4
+           60   8
+           61   7
+           62   5
+           63   1
+           64   4
+           65   2
+           66   4
+           68   1
+           69   2
+           70   12
+           71   25
+           72   3
+           73   14
+           75   12
+           76   1
+           77   6
+           78   1
+           79   3
+           81   8
+           82   2
+           83   2
+           84   4
+
+Checking topology...
+    Boundary definition OK.
+    Cell to face addressing OK.
+    Point usage OK.
+    Upper triangular ordering OK.
+    Face vertices OK.
+    Number of regions: 1 (OK).
+
+Checking patch topology for multiply connected surfaces...
+                   Patch    Faces   Points  Surface topology
+                   walls    38591    71358  ok (non-closed singly connected)
+                backWall      166      303  ok (non-closed singly connected)
+                  outlet      166      303  ok (non-closed singly connected)
+                   inlet     2688     4800  ok (non-closed singly connected)
+                    ".*"    41611    74716      ok (closed singly connected)
+
+
+Checking faceZone topology for multiply connected surfaces...
+    No faceZones found.
+
+Checking basic cellZone addressing...
+                CellZone        Cells       Points       VolumeBoundingBox
+                  fluid        14534        41660     0.030997 (-0.777809 -0.777932 13.9798) (0.779208 0.77713 15.0241)
+
+Checking basic pointZone addressing...
+    No pointZones found.
+
+Checking geometry...
+    Overall domain bounding box (-1.25 -1.25 0) (1.25 1.25 30)
+    Mesh has 3 geometric (non-empty/wedge) directions (1 1 1)
+    Mesh has 3 solution (non-empty) directions (1 1 1)
+    Boundary openness (-8.89436e-18 -6.93028e-17 6.80501e-18) OK.
+    Max cell openness = 2.72378e-16 OK.
+    Max aspect ratio = 188.101 OK.
+    Minimum face area = 5.92131e-06. Maximum face area = 0.0476896.  Face area magnitudes OK.
+    Min volume = 7.89791e-08. Max volume = 0.0236522.  Total volume = 52.897.  Cell volumes OK.
+    Mesh non-orthogonality Max: 99.8192 average: 17.9448
+   *Number of severely non-orthogonal (> 70 degrees) faces: 345.
+ ***Number of non-orthogonality errors: 1.
+  <<Writing 346 non-orthogonal faces to set nonOrthoFaces
+ ***Error in face pyramids: 16 faces are incorrectly oriented.
+  <<Writing 16 faces with incorrect orientation to set wrongOrientedFaces
+ ***Max skewness = 19.2567, 2 highly skew faces detected which may impair the quality of the results
+  <<Writing 2 skew faces to set skewFaces
+    Coupled point location match (average 0) OK.
+
+Failed 3 mesh checks.
+
+End
+
