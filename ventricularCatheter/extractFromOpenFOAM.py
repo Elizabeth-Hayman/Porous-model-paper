@@ -3,7 +3,7 @@
 from paraview.simple import *
 paraview.simple._DisableFirstRenderCameraReset()
 
-def extractValue(Z, inputFile, outCSV):
+def extractValue(xx, inputFile):
     #outFile = f"slices/outfileZ={Z}.csv"
     # create a new 'OpenFOAMReader'
     fluid2foam = OpenFOAMReader(registrationName='foam.foam', FileName=inputFile)
@@ -18,29 +18,31 @@ def extractValue(Z, inputFile, outCSV):
     clip1.ClipType.Center = [2,2.5, 15.0]
     clip1.ClipType.Axis = [0.0, 0.0, 1.0]
     clip1.ClipType.Radius = 0.75
+    for Z in xx:
 
-    # create a new 'Slice'
-    slice1 = Slice(registrationName='Slice1', Input=clip1)
-    slice1.SliceType = 'Plane'
-    slice1.SliceOffsetValues = [0.0]
-    slice1.SliceType.Origin = [0,0, Z]
-    slice1.HyperTreeGridSlicer.Origin = [0,0, Z]
-    slice1.SliceType.Normal = [0.0, 0.0, 1.0]
-    # create a new 'Integrate Variables'
-    integrateVariables1 = IntegrateVariables(registrationName='IntegrateVariables1', Input=slice1)
+        # create a new 'Slice'
+        slice1 = Slice(registrationName='Slice1', Input=clip1)
+        slice1.SliceType = 'Plane'
+        slice1.SliceOffsetValues = [0.0]
+        slice1.SliceType.Origin = [0,0, Z]
+        slice1.HyperTreeGridSlicer.Origin = [0,0, Z]
+        slice1.SliceType.Normal = [0.0, 0.0, 1.0]
+        # create a new 'Integrate Variables'
+        integrateVariables1 = IntegrateVariables(registrationName='IntegrateVariables1', Input=slice1)
 
-    # Create a new 'SpreadSheet View'
-    spreadSheetView1 = CreateView('SpreadSheetView')
-    spreadSheetView1.ColumnToSort = ''
-    spreadSheetView1.BlockSize = 1024
+        # Create a new 'SpreadSheet View'
+        spreadSheetView1 = CreateView('SpreadSheetView')
+        spreadSheetView1.ColumnToSort = ''
+        spreadSheetView1.BlockSize = 1024
 
-    # Properties modified on spreadSheetView1
-    spreadSheetView1.FieldAssociation = 'Cell Data'
-    spreadSheetView1.HiddenColumnLabels = ['Block Name', 'Block Number', 'Cell ID', 'C_Magnitude', 'Cell Type', 'Cx', 'Cy', 'Cz', 'U_Magnitude', 'force', 
-                                        'force_Magnitude', 'moment', 'moment_Magnitude', 'static(p)', 'stressTensor', 'stressTensor_Magnitude', 
-                                        'wallShearStress', 'wallShearStress_Magnitude']
+        # Properties modified on spreadSheetView1
+        spreadSheetView1.FieldAssociation = 'Cell Data'
+        spreadSheetView1.HiddenColumnLabels = ['Block Name', 'Block Number', 'Cell ID', 'C_Magnitude', 'Cell Type', 'Cx', 'Cy', 'Cz', 'U_Magnitude', 'force', 
+                                            'force_Magnitude', 'moment', 'moment_Magnitude', 'static(p)', 'stressTensor', 'stressTensor_Magnitude', 
+                                            'wallShearStress', 'wallShearStress_Magnitude']
 
-    integrateVariables1Display = Show(integrateVariables1, spreadSheetView1, 'SpreadSheetRepresentation')
-    ExportView(outCSV, view=spreadSheetView1)
+        integrateVariables1Display = Show(integrateVariables1, spreadSheetView1, 'SpreadSheetRepresentation')
+        outCSV = f"slices/z={Z}.csv"
+        ExportView(outCSV, view=spreadSheetView1)
 
 #extractValue(23.4, "runtheta=0.05,nHoles=12/foam.foam", "test.csv")

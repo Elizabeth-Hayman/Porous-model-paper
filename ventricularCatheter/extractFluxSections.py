@@ -9,9 +9,9 @@ matplotlib.rcParams.update({"font.size": 40})
 
 resultsFile = "fullExtracted.csv"
 os.system("mkdir slices")
-xx = linspace(7.3,29.9,80)
+xx = linspace(0.1,29.9,100)
 rHole, numHoles, width = .05, 96, 1.5
-for z in xx: extractValue(z, "foam.foam",f"slices/z={z}.csv")
+extractValue(xx, "foam.foam")
 z, p, w = [],[],[]
 for file in os.listdir("slices"):
     z.append(float(file.replace(".csv", "=").split("=")[-2]))

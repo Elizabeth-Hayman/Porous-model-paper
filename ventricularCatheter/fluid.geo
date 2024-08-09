@@ -25,11 +25,11 @@ catheterLength = 30;
 // Hole parameters updated in simulation
 theta = 20;
 rotation = 0;
-t[] = {0.6,0.4};
+t[] = {0.5,0.3};
 phi[] = {rotation+0.4, rotation+180.4};
 offset[] = {0, -90,0, -90,0, -90,0, -90,0, -90};
-startDist = {5 + t(0)};
-endDist = {25 - t(0)};
+startDist = {5};
+endDist = {25};
 
 
 // Make box 
@@ -91,10 +91,11 @@ holesLength = endDist - startDist;
 For i In {0:numHolesAxial-1:1}
     For j In {1:numHolesLength:1}
     	zPos = holesEnd + (j-1)*holesLength/(numHolesLength-1);
+        Printf("zpos %g", zPos);
         xPos =  xc + r * Cos(Pi/180*(phi[i] + offset[j-1])); yPos = yc + r * Sin(Pi/180*(phi[i] + offset[j-1])); rHole = t[i];
         xAxis = xPos - xc; yAxis = yPos - yc;
         v = newv; 
-        If (t[i] > .10)
+        If (t[i] < .10)
 	        Cylinder(v) = {xPos, yPos, zPos, -xAxis, -yAxis, 0, rHole};
         Else
 	        Cone(v) = {xPos, yPos, zPos, -xAxis, -yAxis, 0, rHole, 0};
